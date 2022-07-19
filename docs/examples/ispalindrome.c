@@ -15,8 +15,8 @@ void is_palindrome(char const* s) {
                 ? ""
                 : "not ");
 
-    str_del(word);
     str_del(reversed);
+    str_del(word);
 }
 
 int main(int argc, char const** argv) {

@@ -21,7 +21,7 @@ void is_palindrome(char const* s) {
     str_reverse(reversed);
 
     printf("%s is %sa palindrome!\n",
-            str_cstr(word)
+            str_cstr(word),
             str_equal(word, reversed)
                 ? ""
                 : "not ");
@@ -32,6 +32,7 @@ void is_palindrome(char const* s) {
 
 int main(int argc, char const** argv) {
     /* ... */
+
     for (int i = 1; i < argc; ++i) {
         is_palindrome(argv[i]);
     }
