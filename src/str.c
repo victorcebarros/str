@@ -111,6 +111,10 @@ struct str* str_from_cstr(char const* s) {
         return (void*) 0;
     }
 
+    if (!s) {
+        return snew;
+    }
+
     if (!str_append_cstr(snew, s)) {
         str_del(snew);
         return (void*) 0;
@@ -176,6 +180,10 @@ bool str_append_char(struct str* self, char c) {
 }
 
 bool str_append_cstr(struct str* self, char const* s) {
+    if (!self || !s) {
+        return false;
+    }
+
     for (char const* c = s; *c; ++c) {
         if (!str_append_char(self, *c)) return false;
     }
@@ -325,7 +333,7 @@ struct str* str_slice(struct str* self, size_t start, size_t end) {
 
 struct str* str_clone(struct str* self) {
     if (!self) {
-        return (void*) 0;
+        return str_new();
     }
 
     assert(self->data != (void*) 0);
