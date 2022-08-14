@@ -43,6 +43,9 @@ str* str_from_char(char c);
  *
  * @warning The C string needs to be null terminated!
  *
+ * @note       If the C string s is null, it creates a new
+ *             empty string.
+ *
  * @param s A pointer to a C string.
  *
  * @return  A pointer to a str object containing the C string.
@@ -53,6 +56,9 @@ str* str_from_cstr(char const* s);
 /** Creates str from str object.
  * @warning The user has to free the object after usage with
  *          str_del.
+ *
+ * @note       If the str s is null, it creates a new
+ *             empty string.
  *
  * @param s A pointer to a str object.
  *
@@ -66,6 +72,9 @@ str* str_from_str(str* s);
  *             it will suffer from integral promotion in C,
  *             meaning it will be perceived as int, hence
  *             the int type is handled by str_append_char.
+ *
+ * @note       If T is a null pointer, it returns a new
+ *             empty string.
  *
  * @param T    Generic Object.
  *
@@ -83,6 +92,9 @@ str* str_from_str(str* s);
 /** Clones the str object.
  * @warning    The user has to free the object after usage with
  *             str_del.
+ *
+ * @note       If the str self is null, it creates a new
+ *             empty string.
  *
  * @param self A pointer to a str object.
  *
@@ -139,6 +151,8 @@ bool str_append_char(str* self, char c);
 
 /** Appends a null terminated C string to str.
  * @warning    The C string needs to be null terminated!
+ * @note       If the C string s is null, it doesn't append
+ *             anything.
  *
  * @param self A pointer to a str object.
  * @param s    A pointer to a character string.
@@ -149,6 +163,8 @@ bool str_append_char(str* self, char c);
 bool str_append_cstr(str* self, char const* s);
 
 /** Appends a str s to str self.
+ * @note       If the str s is null, it doesn't append
+ *             anything.
  *
  * @param self A pointer to a str object.
  * @param s    A pointer to a str object.
@@ -163,6 +179,8 @@ bool str_append_str(str* self, str* s);
  *             it will suffer from integral promotion in C,
  *             meaning it will be perceived as int, hence
  *             the int type is handled by str_append_char.
+ * @note       If T is a null pointer, it doesn't append
+ *             anything.
  *
  * @param self A pointer to a str object.
  * @param T    Generic Object.
