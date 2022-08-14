@@ -97,7 +97,7 @@ struct str* str_from_char(char c) {
     }
 
     if (!str_append_char(s, c)) {
-        free(s);
+        str_del(s);
         return (void*) 0;
     }
 
@@ -112,7 +112,7 @@ struct str* str_from_cstr(char const* s) {
     }
 
     if (!str_append_cstr(snew, s)) {
-        free(snew);
+        str_del(snew);
         return (void*) 0;
     }
 
@@ -315,7 +315,7 @@ struct str* str_slice(struct str* self, size_t start, size_t end) {
 
     for (; start < end; start++) {
         if (!str_append_char(s, self->data[start])) {
-            free(s);
+            str_del(s);
             return (void*) 0;
         }
     }
