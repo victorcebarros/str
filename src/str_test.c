@@ -394,6 +394,7 @@ static void str_from_cstr_null_test(void** state) {
 
     str* s = str_from((char*) 0);
 
+    assert_ptr_not_equal(s, 0);
     assert_string_equal(str_cstr(s), "");
 
     str_del(s);
@@ -415,6 +416,7 @@ static void str_from_str_null_test(void** state) {
 
     str* s = str_from((str*) 0);
 
+    assert_ptr_not_equal(s, 0);
     assert_string_equal(str_cstr(s), "");
 
     str_del(s);
