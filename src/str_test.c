@@ -304,6 +304,17 @@ static void str_empty_test(void** state) {
     str_del(s);
 }
 
+static void str_clone_null_test(void** state) {
+    (void) state;
+
+    str* s = str_clone((str*) 0);
+
+    assert_string_equal(str_cstr(s), "");
+    assert_ptr_not_equal(s, 0);
+
+    str_del(s);
+}
+
 static void str_clone_test(void** state) {
     (void) state;
 
@@ -484,6 +495,7 @@ int main(void) {
         cmocka_unit_test(str_slice_middle_test),
         cmocka_unit_test(str_slice_end_test),
         cmocka_unit_test(str_empty_test),
+        cmocka_unit_test(str_clone_null_test),
         cmocka_unit_test(str_clone_test),
         cmocka_unit_test(str_cmp_eq_test),
         cmocka_unit_test(str_cmp_ne_test),
