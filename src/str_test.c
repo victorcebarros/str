@@ -49,6 +49,18 @@ static void str_append_char_literal_test(void** state) {
     str_del(s);
 }
 
+static void str_append_cstr_null_test(void** state) {
+    (void) state;
+
+    str* s = str_new();
+
+    str_append(s, (char*) 0);
+
+    assert_string_equal(str_cstr(s), "");
+
+    str_del(s);
+}
+
 static void str_append_cstr_literal_test(void** state) {
     (void) state;
 
@@ -59,6 +71,18 @@ static void str_append_cstr_literal_test(void** state) {
 
     assert_string_equal(str_cstr(s), cstr);
     assert(str_len(s) == strlen(cstr));
+
+    str_del(s);
+}
+
+static void str_append_str_null_test(void** state) {
+    (void) state;
+
+    str* s = str_new();
+
+    str_append(s, (str*) 0);
+
+    assert_string_equal(str_cstr(s), "");
 
     str_del(s);
 }
@@ -365,6 +389,16 @@ static void str_from_char_literal_test(void** state) {
     str_del(s);
 }
 
+static void str_from_cstr_null_test(void** state) {
+    (void) state;
+
+    str* s = str_from((char*) 0);
+
+    assert_string_equal(str_cstr(s), "");
+
+    str_del(s);
+}
+
 static void str_from_cstr_literal_test(void** state) {
     (void) state;
 
@@ -372,6 +406,16 @@ static void str_from_cstr_literal_test(void** state) {
 
     assert_string_equal(str_cstr(s), "abcdefghijklmnopqrstuvwxyz0123456789");
     assert(str_len(s) == 36);
+
+    str_del(s);
+}
+
+static void str_from_str_null_test(void** state) {
+    (void) state;
+
+    str* s = str_from((str*) 0);
+
+    assert_string_equal(str_cstr(s), "");
 
     str_del(s);
 }
@@ -423,7 +467,9 @@ int main(void) {
         cmocka_unit_test(str_cstr_test),
         cmocka_unit_test(str_len_test),
         cmocka_unit_test(str_append_char_literal_test),
+        cmocka_unit_test(str_append_cstr_null_test),
         cmocka_unit_test(str_append_cstr_literal_test),
+        cmocka_unit_test(str_append_str_null_test),
         cmocka_unit_test(str_append_str_test),
         cmocka_unit_test(str_append_cstr_empty_test),
         cmocka_unit_test(str_append_str_empty_test),
@@ -444,7 +490,9 @@ int main(void) {
         cmocka_unit_test(str_from_char_literal_test),
         cmocka_unit_test(str_from_cstr_literal_test),
         cmocka_unit_test(str_from_str_test),
+        cmocka_unit_test(str_from_cstr_null_test),
         cmocka_unit_test(str_from_cstr_empty_test),
+        cmocka_unit_test(str_from_str_null_test),
         cmocka_unit_test(str_from_str_empty_test),
     };
 
